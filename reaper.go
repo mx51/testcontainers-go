@@ -401,6 +401,7 @@ func (r *reaperSpawner) newReaper(ctx context.Context, sessionID string, provide
 			hc.Binds = []string{dockerHostMount + ":/var/run/docker.sock"}
 			hc.NetworkMode = Bridge
 			hc.Privileged = tcConfig.RyukPrivileged
+			hc.UsernsMode = container.UsernsMode(tcConfig.RyukUserNamespace)
 		},
 		Env: map[string]string{},
 	}
